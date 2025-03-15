@@ -6,7 +6,7 @@ let socketInstance = null;
 
 export const initializeSocket = (projectId) => {
 
-    socketInstance = socket(import.meta.env.VITE_API_URL, {
+    socketInstance = socket("https://neurocodeai-aubec4d6a7dtc0av.centralindia-01.azurewebsites.net", {
         auth: {
             token: localStorage.getItem('token')
         },
