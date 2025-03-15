@@ -17,7 +17,10 @@ app.get("/", (req, res) => {
 
 
 app.use(cors({
-  origin: 'https://lively-sand-0a321151e.6.azurestaticapps.net'
+  origin: "https://lively-sand-0a321151e.6.azurestaticapps.net", 
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 app.use(cookieParser());
