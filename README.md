@@ -4,6 +4,9 @@ NeuroCode AI is a collaborative AI-powered development platform where users can 
 
 ## ✨ Features
 
+### 🌍 Live Deployment
+[NeuroCode AI Live](https://lively-sand-0a321151e.6.azurestaticapps.net/)
+
 - **Project Collaboration**: Create projects and add collaborators.
 - **Real-time Chat**: Discuss project details with team members.
 - **AI Assistance**: Use `@ai` prompts to get AI-generated suggestions and code.
@@ -68,6 +71,9 @@ NeuroCode AI is deployed on **Azure** using:
 - **Azure Static Web Apps** (Frontend)
 - **Azure App Service** (Backend)
 
+### 🌍 Live Deployment
+[NeuroCode AI Live](https://lively-sand-0a321151e.6.azurestaticapps.net/)
+
 ## 🤝 Contribution Guidelines
 1. Fork the repository
 2. Create a new branch: `git checkout -b feature-branch`
@@ -80,3 +86,4 @@ This project is licensed under the **MIT License**.
 
 ---
 🚀 **Happy Coding!** ✨
+
