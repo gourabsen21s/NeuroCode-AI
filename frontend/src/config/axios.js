@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = "https://neurocodeai-aubec4d6a7dtc0av.centralindia-01.azurewebsites.net";
 console.log('Using API URL:', baseURL);
 
 const axiosInstance = axios.create({
