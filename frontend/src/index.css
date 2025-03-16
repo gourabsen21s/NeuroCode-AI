@@ -212,6 +212,9 @@ body {
   padding: var(--spacing-md) var(--spacing-md) var(--spacing-xs);
   color: var(--text-gray);
   letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .file-list {
@@ -878,5 +881,376 @@ body {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* File Explorer Action Buttons */
+.file-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.file-action-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color-secondary);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.file-action-button:hover {
+  background-color: var(--hover-color);
+  color: var(--accent-color);
+}
+
+/* Context Menu - updated with more visibility */
+.context-menu {
+  position: fixed;
+  min-width: 220px;
+  background-color: #252526;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  font-size: 13px;
+  padding: 4px 0;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.context-menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #e0e0e0;
+  transition: background-color 0.15s;
+}
+
+.context-menu-item:hover {
+  background-color: #2a2a2a;
+}
+
+.context-menu-icon {
+  margin-right: 10px;
+  font-size: 14px;
+  width: 18px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.context-menu-item-danger {
+  color: #ff6b6b;
+}
+
+.context-menu-item-danger:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: #3c3c3c;
+  margin: 4px 0;
+}
+
+.context-menu-debug {
+  font-size: 11px;
+  color: #aaa;
+  background-color: #1e1e1e;
+  font-family: monospace;
+}
+
+/* Add a subtle right-click indicator on file items */
+.file-item {
+  cursor: context-menu;
+}
+
+/* Terminal styles */
+.terminal-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--medium-gray);
+  color: var(--pastel-green);
+  border: 1px solid var(--pastel-green-dim);
+  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  margin-right: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.terminal-toggle-button:hover {
+  background-color: var(--vscode-active-item);
+}
+
+.terminal-icon {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.terminal-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  max-height: 50vh;
+  border-top: 1px solid var(--vscode-border);
+  background-color: var(--dark-gray);
+}
+
+.editor-preview-container.with-terminal {
+  height: calc(100% - var(--terminal-height, 200px));
+}
+
+.terminal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-size: 12px;
+  background-color: var(--vscode-editor-bg);
+  color: var(--vscode-text);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: var(--vscode-tab-inactive-bg);
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.terminal-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pastel-green);
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal-line {
+  padding: 2px 0;
+  line-height: 1.4;
+}
+
+.terminal-command {
+  color: var(--pastel-green);
+}
+
+.terminal-output {
+  color: var(--vscode-text);
+}
+
+.terminal-error {
+  color: #ff6b6b;
+}
+
+.terminal-system {
+  color: #888888;
+  font-style: italic;
+}
+
+.terminal-input-container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--vscode-editor-bg);
+  border-top: 1px solid var(--vscode-border);
+}
+
+.terminal-prompt {
+  color: var(--pastel-green);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.terminal-input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  color: var(--vscode-text);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.terminal-input:focus {
+  outline: none;
+}
+
+.terminal-input::placeholder {
+  color: var(--text-gray);
+  opacity: 0.6;
+}
+
+/* Toast notification styling */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  background-color: #323232;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+}
+
+.toast-icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 14px;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: color 0.2s;
+}
+
+.toast-close:hover {
+  color: white;
+}
+
+/* WebContainer status indicator */
+.webcontainer-status-indicator {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.status-icon {
+  font-size: 14px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-icon.loading {
+  color: #ffc107;
+  animation: spin 1.5s linear infinite;
+}
+
+.status-icon.ready {
+  color: #4caf50;
+}
+
+.status-icon.error {
+  color: #f44336;
+}
+
+/* Add styles for disabled run button */
+.run-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--medium-gray);
+  border-color: var(--medium-gray);
+  color: var(--text-gray);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* WebContainer retry button */
+.retry-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.retry-button:hover .status-icon.error {
+  animation: pulse 1s infinite;
+  color: #ff6b6b;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* WebContainer error toast */
+.toast-notification.toast-error .toast-content {
+  background-color: rgba(244, 67, 54, 0.9);
+  border-left: 3px solid #d32f2f;
+}
+
+.toast-retry-hint {
+  display: inline-block;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+  margin: 0 2px;
+}
+
+/* WebContainer status indicator - add unsupported style */
+.status-icon.unsupported {
+  color: #f44336;
+  opacity: 0.8;
+}
+
+/* Terminal header with current directory */
+.terminal-cwd {
+  font-size: 11px;
+  color: var(--pastel-green-dim);
+  margin-left: auto;
+  font-family: monospace;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
