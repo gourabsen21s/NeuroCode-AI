@@ -1,24 +1,43 @@
-import React from 'react'
-import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Home from '../screens/Home'
 import Login from '../screens/Login'
 import Register from '../screens/Register'
-import Home from '../screens/Home'
 import Project from '../screens/Project'
-import UserAuth from '../auth/UserAuth'
+import LandingPage from '../screens/LandingPage'
+import { UserContext } from '../context/user.context'
+
+const PrivateRoute = ({ children }) => {
+  const { user } = useContext(UserContext)
+  return user ? children : <Navigate to="/login" />
+}
 
 const AppRoutes = () => {
-    return (
-        <BrowserRouter>
-
-            <Routes>
-                <Route path="/" element={<UserAuth><Home /></UserAuth>} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/project" element={<UserAuth><Project /></UserAuth>} />
-            </Routes>
-
-        </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/project"
+          element={
+            <PrivateRoute>
+              <Project />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default AppRoutes
