@@ -30,21 +30,21 @@ const Home = () => {
 
     return (
         <main 
-            className='min-h-screen font-inter' 
+            className='min-h-screen font-sans' 
             style={{
-                backgroundColor: '#0a1a20',
+                backgroundColor: '#000000',
                 backgroundImage: `
                     radial-gradient(650px circle at 0% 0%,
-                        #103d43 15%,
-                        #082c35 35%,
-                        #061a20 75%,
-                        #051015 80%,
+                        #0f2d2a 15%,
+                        #081b1a 35%,
+                        #061211 75%,
+                        #050a0a 80%,
                         transparent 100%),
                     radial-gradient(1250px circle at 100% 100%,
-                        #0b486b 15%,
-                        #073045 35%,
-                        #051a25 75%,
-                        #03131d 80%,
+                        #0b3b46 15%,
+                        #072530 35%,
+                        #051a20 75%,
+                        #03131a 80%,
                         transparent 100%)
                 `
             }}
@@ -52,19 +52,19 @@ const Home = () => {
             <div className='p-6 container mx-auto'>
                 {/* Enhanced Header with Text Logo */}
                 <div className='flex flex-col md:flex-row justify-between items-center mb-12'>
-                <div className='text-2xl md:text-3xl font-extrabold tracking-tight mb-4 md:mb-0'>
-    <span className='bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500'>
-        NeuroCode AI
-    </span>
-</div>
-                    <h1 className='text-xl font-medium text-white'>Welcome back, <span className='font-semibold'>{user?.name || 'User'}</span></h1>
+                    <div className='text-2xl md:text-3xl font-extrabold tracking-tight mb-4 md:mb-0'>
+                        <span className='bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500'>
+                            NeuroCode AI
+                        </span>
+                    </div>
+                    <h1 className='text-xl font-medium text-white'>Welcome back, <span className='font-semibold'>{user?.name || user?.email || 'User'}</span></h1>
                 </div>
 
                 {/* Relevant Information Section */}
                 <div className='mb-10 p-6 rounded-xl bg-opacity-20 backdrop-filter backdrop-blur-md border border-opacity-20'
                     style={{
-                        backgroundColor: 'rgba(10, 30, 35, 0.7)',
-                        borderColor: 'rgba(76, 201, 189, 0.3)'
+                        backgroundColor: 'rgba(10, 20, 25, 0.7)',
+                        borderColor: 'rgba(16, 185, 129, 0.3)'
                     }}>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                         <div>
@@ -90,12 +90,12 @@ const Home = () => {
                         onClick={() => setIsModalOpen(true)}
                         className='p-6 border-2 border-dashed rounded-lg transition-all duration-300 flex items-center justify-center gap-2 w-64 h-40'
                         style={{
-                            borderColor: 'rgba(76, 201, 189, 0.5)',
-                            backgroundColor: 'rgba(10, 30, 35, 0.7)',
+                            borderColor: 'rgba(16, 185, 129, 0.5)',
+                            backgroundColor: 'rgba(10, 20, 25, 0.7)',
                             backdropFilter: 'blur(8px)'
                         }}
                     >
-                        <FaPlusCircle className='text-2xl' style={{color: '#4cc9bd'}} />
+                        <FaPlusCircle className='text-2xl text-teal-400' />
                         <span className='text-lg font-semibold text-white'>New Project</span>
                     </button>
                     
@@ -105,9 +105,9 @@ const Home = () => {
                             onClick={() => navigate(`/project`, { state: { project } })}
                             className='cursor-pointer p-6 rounded-lg transition-all duration-300 w-64 h-40 flex flex-col justify-between hover:shadow-lg'
                             style={{
-                                backgroundColor: 'rgba(10, 30, 35, 0.8)',
+                                backgroundColor: 'rgba(10, 20, 25, 0.8)',
                                 backdropFilter: 'saturate(180%) blur(20px)',
-                                border: '1px solid rgba(0, 240, 180, 0.1)'
+                                border: '1px solid rgba(16, 185, 129, 0.1)'
                             }}
                         >
                             <h2 className='font-semibold text-lg text-white'>{project.name}</h2>
@@ -122,9 +122,9 @@ const Home = () => {
                 <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50'>
                     <div className='p-6 rounded-lg shadow-2xl w-11/12 md:w-1/3'
                         style={{
-                            backgroundColor: 'rgba(10, 30, 35, 0.9)',
+                            backgroundColor: 'rgba(10, 20, 25, 0.9)',
                             backdropFilter: 'saturate(200%) blur(25px)',
-                            border: '1px solid rgba(0, 240, 180, 0.1)'
+                            border: '1px solid rgba(16, 185, 129, 0.1)'
                         }}
                     >
                         <h2 className='text-xl font-semibold mb-4 text-white'>Create New Project</h2>
@@ -149,11 +149,7 @@ const Home = () => {
                                 </button>
                                 <button
                                     type='submit'
-                                    className='px-4 py-2 text-white rounded-lg transition-all duration-300'
-                                    style={{
-                                        background: 'linear-gradient(to right, #05a67b, #0596a6)',
-                                        boxShadow: '0 4px 12px rgba(5, 166, 123, 0.3)'
-                                    }}>
+                                    className='px-4 py-2 text-black font-medium rounded-lg transition-all duration-300 bg-teal-400 hover:bg-teal-500'>
                                     Create
                                 </button>
                             </div>
@@ -165,4 +161,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Home; 
