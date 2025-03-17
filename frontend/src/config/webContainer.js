@@ -89,7 +89,7 @@ export const getWebContainer = async () => {
     
     try {
         // Create a boot promise with timeout
-        const timeoutMs = 30000; // 30 seconds timeout (increased from 15s)
+        const timeoutMs = 70000; // 30 seconds timeout (increased from 15s)
         
         const bootWithTimeout = new Promise((resolve, reject) => {
             const timeout = setTimeout(() => {
