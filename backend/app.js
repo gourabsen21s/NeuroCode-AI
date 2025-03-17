@@ -21,6 +21,12 @@ dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
+
 app.use(
   cors({
     origin: "https://lively-sand-0a321151e.6.azurestaticapps.net",
@@ -29,13 +35,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
-
 
 app.use(express.json());
 app.use(cookieParser());
