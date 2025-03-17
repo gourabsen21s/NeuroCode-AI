@@ -56,14 +56,14 @@ npm run dev
 ## 🔐 Environment Variables
 Create a `.env` file in the **backend** folder and add:
 ```sh
-MONGO_URI=your_mongodb_connection_string
+MONGODB_URI=your_mongodb_connection_string
 REDIS_URI=your_redis_connection_string
 JWT_SECRET=your_jwt_secret
 AI_API_KEY=your_ai_api_key
 ```
 For the **frontend**, create a `.env` file inside **frontend**:
 ```sh
-VITE_BACKEND_URL=http://localhost:5000
+VITE_API_URL=http://localhost:5000
 ```
 
 ## 🚀 Deployment
