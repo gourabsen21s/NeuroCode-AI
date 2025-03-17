@@ -1,4 +1,7 @@
 {
+  "mimeTypes": {
+    ".css": "text/css"
+  },
   "routes": [
     {
       "route": "/*",
