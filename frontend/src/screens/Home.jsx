@@ -3,6 +3,8 @@ import { UserContext } from '../context/user.context';
 import axios from "../config/axios";
 import { useNavigate } from 'react-router-dom';
 import { FaPlusCircle } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
+import BackgroundPattern from '../components/BackgroundPattern';
 
 const Home = () => {
     const { user } = useContext(UserContext);
@@ -29,62 +31,13 @@ const Home = () => {
     }
 
     return (
-        <main 
-            className='min-h-screen font-sans' 
-            style={{
-                backgroundColor: '#000000',
-                backgroundImage: `
-                    radial-gradient(650px circle at 0% 0%,
-                        #0f2d2a 15%,
-                        #081b1a 35%,
-                        #061211 75%,
-                        #050a0a 80%,
-                        transparent 100%),
-                    radial-gradient(1250px circle at 100% 100%,
-                        #0b3b46 15%,
-                        #072530 35%,
-                        #051a20 75%,
-                        #03131a 80%,
-                        transparent 100%)
-                `
-            }}
-        >
-            <div className='p-6 container mx-auto'>
-                {/* Enhanced Header with Text Logo */}
-                <div className='flex flex-col md:flex-row justify-between items-center mb-12'>
-                    <div className='text-2xl md:text-3xl font-extrabold tracking-tight mb-4 md:mb-0'>
-                        <span className='bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500'>
-                            NeuroCode AI
-                        </span>
-                    </div>
-                    <h1 className='text-xl font-medium text-white'>Welcome back, <span className='font-semibold'>{user?.name || user?.email || 'User'}</span></h1>
-                </div>
-
-                {/* Relevant Information Section */}
-                <div className='mb-10 p-6 rounded-xl bg-opacity-20 backdrop-filter backdrop-blur-md border border-opacity-20'
-                    style={{
-                        backgroundColor: 'rgba(10, 20, 25, 0.7)',
-                        borderColor: 'rgba(16, 185, 129, 0.3)'
-                    }}>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                        <div>
-                            <h3 className='text-lg font-medium text-teal-400 mb-2'>Recent Activity</h3>
-                            <p className='text-gray-300 leading-relaxed'>
-                                Your team has been active in the last 7 days with 3 new commits and 2 resolved issues.
-                                Continue your momentum by exploring your projects below.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className='text-lg font-medium text-blue-400 mb-2'>Platform Updates</h3>
-                            <p className='text-gray-300 leading-relaxed'>
-                                We've recently added new AI code generation templates and improved collaboration features.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+        <div className="min-h-screen bg-black text-white flex flex-col relative">
+            <BackgroundPattern />
+            <Navbar />
+            
+            <div className="flex-1 relative z-10 p-6 container mx-auto">
                 {/* Projects Section */}
-                <h2 className='text-2xl font-bold mb-6 text-white'>Your Projects</h2>
+                <h2 className='text-2xl font-bold mb-6 text-white mt-16'>Your Projects</h2>
                 <div className='flex flex-wrap gap-4'>
                     <button
                         onClick={() => setIsModalOpen(true)}
@@ -157,7 +110,7 @@ const Home = () => {
                     </div>
                 </div>
             )}
-        </main>
+        </div>
     );
 };
 
