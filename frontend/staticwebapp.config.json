@@ -3,17 +3,14 @@
     {
       "route": "/*",
       "headers": {
+        "Cross-Origin-Opener-Policy": "same-origin",
         "Cross-Origin-Embedder-Policy": "require-corp",
-        "Cross-Origin-Opener-Policy": "same-origin"
+        "Cross-Origin-Resource-Policy": "same-origin"
       }
     }
   ],
   "navigationFallback": {
-    "rewrite": "/index.html"
-  },
-  "mimeTypes": {
-    ".css": "text/css",
-    ".js": "application/javascript",
-    ".wasm": "application/wasm"
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
   }
-}
+} 
