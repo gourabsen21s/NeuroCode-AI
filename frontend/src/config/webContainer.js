@@ -14,12 +14,42 @@ const checkWebContainerSupport = () => {
     // Check for cross-origin isolation (needed for SharedArrayBuffer)
     if (!window.crossOriginIsolated) {
       console.warn('Cross-Origin-Isolation is not enabled. WebContainer requires this to be enabled.');
+      
+      // Log more detailed information to help with debugging
+      console.info('Current isolation status:', {
+        crossOriginIsolated: window.crossOriginIsolated,
+        coopHeader: document.querySelector('meta[http-equiv="Cross-Origin-Opener-Policy"]')?.content,
+        coepHeader: document.querySelector('meta[http-equiv="Cross-Origin-Embedder-Policy"]')?.content
+      });
+      
       return false;
     }
     
     return true;
   } catch (error) {
     console.error('Error checking WebContainer support:', error);
+    return false;
+  }
+};
+
+// Check if the browser is compatible with WebContainer
+export const isBrowserCompatible = () => {
+  try {
+    // Check for modern browser features required by WebContainer
+    const isModernBrowser = 'serviceWorker' in navigator && 
+                           'ReadableStream' in window && 
+                           'WritableStream' in window;
+    
+    // Check for Chrome/Edge/Opera (Chromium-based browsers)
+    const isChromiumBased = /Chrome|Edge|Opera/.test(navigator.userAgent) && 
+                           /Chrome|Edge|Opera/.test(navigator.appName);
+    
+    // Firefox is also supported with the right flags
+    const isFirefox = navigator.userAgent.indexOf('Firefox') !== -1;
+    
+    return isModernBrowser && (isChromiumBased || isFirefox);
+  } catch (error) {
+    console.error('Error checking browser compatibility:', error);
     return false;
   }
 };
@@ -38,6 +68,17 @@ export const getWebContainer = async () => {
     // If WebContainer is not supported, return null immediately
     if (!webContainerSupported) {
         console.warn('WebContainer is not supported in this environment');
+        
+        // Check if it's a browser compatibility issue or a headers issue
+        if (isBrowserCompatible()) {
+            console.info('Your browser is compatible, but cross-origin isolation is not enabled. This is likely a server configuration issue.');
+            console.info('Please ensure the following headers are set on your server:');
+            console.info('Cross-Origin-Opener-Policy: same-origin');
+            console.info('Cross-Origin-Embedder-Policy: require-corp');
+        } else {
+            console.info('Your browser may not be compatible with WebContainer. Please try a modern Chromium-based browser.');
+        }
+        
         return null;
     }
     
@@ -48,22 +89,29 @@ export const getWebContainer = async () => {
     
     try {
         // Create a boot promise with timeout
-        const timeoutMs = 60000; // 15 seconds timeout
+        const timeoutMs = 30000; // 30 seconds timeout (increased from 15s)
         
         const bootWithTimeout = new Promise((resolve, reject) => {
             const timeout = setTimeout(() => {
                 reject(new Error('WebContainer boot timed out'));
             }, timeoutMs);
             
-            WebContainer.boot()
-                .then(instance => {
-                    clearTimeout(timeout);
-                    resolve(instance);
-                })
-                .catch(error => {
-                    clearTimeout(timeout);
-                    reject(error);
-                });
+            // Use the webcontainers.io API
+            WebContainer.boot({
+                // Specify the CDN URL for the service worker
+                serviceWorkerUrl: 'https://cdn.jsdelivr.net/npm/@webcontainer/api@1.5.0/dist/webcontainer.worker.js',
+                // Optional: Specify a custom base URL for the worker
+                coep: 'require-corp',
+                coop: 'same-origin'
+            })
+            .then(instance => {
+                clearTimeout(timeout);
+                resolve(instance);
+            })
+            .catch(error => {
+                clearTimeout(timeout);
+                reject(error);
+            });
         });
         
         bootPromise = bootWithTimeout;
