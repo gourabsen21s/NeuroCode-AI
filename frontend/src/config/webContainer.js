@@ -99,7 +99,7 @@ export const getWebContainer = async () => {
             // Use the webcontainers.io API
             WebContainer.boot({
                 // Specify the CDN URL for the service worker
-                serviceWorkerUrl: 'https://cdn.jsdelivr.net/npm/@webcontainer/api@1.5.0/dist/webcontainer.worker.js',
+                serviceWorkerUrl: 'https://cdn.jsdelivr.net/npm/@webcontainer/api@latest/dist/webcontainer.worker.js',
                 // Optional: Specify a custom base URL for the worker
                 coep: 'require-corp',
                 coop: 'same-origin'
