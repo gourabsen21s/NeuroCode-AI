@@ -17,7 +17,7 @@ function App() {
     const token = localStorage.getItem("token")
     if (token) {
       axios
-        .get("/users/me")
+        .get("/users/profile")
         .then((res) => {
           setUser(res.data.user)
           setLoading(false)
