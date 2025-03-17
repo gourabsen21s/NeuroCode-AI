@@ -9,6 +9,7 @@ import { initializeSocket, receiveMessage, sendMessage } from "../config/socket"
 import Markdown from "markdown-to-jsx"
 import hljs from "highlight.js"
 import { getWebContainer, isWebContainerSupported } from "../config/webContainer"
+import { getLanguageFromFilename, safeHighlight, highlightElement } from "../utils/highlightUtils"
 
 // Add resize functionality
 const ResizeHandle = ({ direction, onResize }) => {
@@ -77,10 +78,9 @@ function SyntaxHighlightedCode(props) {
     const ref = useRef(null)
 
     React.useEffect(() => {
-    if (ref.current && props.className?.includes("lang-") && window.hljs) {
-            window.hljs.highlightElement(ref.current)
-      ref.current.removeAttribute("data-highlighted")
-        }
+    if (ref.current && props.className?.includes("lang-")) {
+      highlightElement(ref.current)
+    }
   }, [props.className, props.children])
 
     return <code {...props} ref={ref} />
@@ -1402,7 +1402,7 @@ const Project = () => {
                                                 saveFileTree(ft)
                                             }}
                     dangerouslySetInnerHTML={{
-                      __html: hljs.highlight("javascript", fileTree[currentFile].file.contents).value,
+                      __html: safeHighlight(fileTree[currentFile].file.contents, getLanguageFromFilename(currentFile)),
                     }}
                     className="code-content"
                                         />
