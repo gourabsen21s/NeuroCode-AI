@@ -9,78 +9,74 @@ import { generateResult } from './services/ai.service.js';
 
 const port = process.env.PORT || 3000;
 
-
+// Add middleware to set COOP and COEP headers
+app.use((req, res, next) => {
+  // Set Cross-Origin-Opener-Policy header
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  
+  // Set Cross-Origin-Embedder-Policy header
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  
+  // Additional recommended security headers
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  
+  next();
+});
 
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-    origin: "https://lively-sand-0a321151e.6.azurestaticapps.net",
-    methods: ["GET", "POST"]
-  }
+        origin: '*',
+        // Add CORS headers for WebSocket connections
+        methods: ["GET", "POST"],
+        credentials: true
+    }
 });
 
-
 io.use(async (socket, next) => {
-
     try {
-
-        const token = socket.handshake.auth?.token || socket.handshake.headers.authorization?.split(' ')[ 1 ];
+        const token = socket.handshake.auth?.token || socket.handshake.headers.authorization?.split(' ')[1];
         const projectId = socket.handshake.query.projectId;
 
         if (!mongoose.Types.ObjectId.isValid(projectId)) {
             return next(new Error('Invalid projectId'));
         }
 
-
         socket.project = await projectModel.findById(projectId);
 
-
         if (!token) {
-            return next(new Error('Authentication error'))
+            return next(new Error('Authentication error'));
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         if (!decoded) {
-            return next(new Error('Authentication error'))
+            return next(new Error('Authentication error'));
         }
-
 
         socket.user = decoded;
 
         next();
-
     } catch (error) {
-        next(error)
+        next(error);
     }
-
-})
-
+});
 
 io.on('connection', socket => {
-    socket.roomId = socket.project._id.toString()
+    socket.roomId = socket.project._id.toString();
 
-
-    console.log('a user connected');
-
-
+    console.log('A user connected');
 
     socket.join(socket.roomId);
 
     socket.on('project-message', async data => {
-
         const message = data.message;
-
         const aiIsPresentInMessage = message.includes('@ai');
-        socket.broadcast.to(socket.roomId).emit('project-message', data)
+        socket.broadcast.to(socket.roomId).emit('project-message', data);
 
         if (aiIsPresentInMessage) {
-
-
             const prompt = message.replace('@ai', '');
-
             const result = await generateResult(prompt);
-
 
             io.to(socket.roomId).emit('project-message', {
                 message: result,
@@ -88,24 +84,18 @@ io.on('connection', socket => {
                     _id: 'ai',
                     email: 'AI'
                 }
-            })
+            });
 
-
-            return
+            return;
         }
-
-
-    })
+    });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
-        socket.leave(socket.roomId)
+        console.log('User disconnected');
+        socket.leave(socket.roomId);
     });
 });
 
-
-
-
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-})
+});
