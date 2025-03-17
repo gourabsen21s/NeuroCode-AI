@@ -995,7 +995,7 @@ const Project = () => {
             <span className="toast-icon">⚠️</span>
             <span className="toast-message">
               {webContainerStatus === "unsupported" 
-                ? "WebContainer is not supported in this browser/environment. Running projects requires a modern browser with cross-origin isolation enabled." 
+                ? "WebContainer is not supported in this environment. This is likely because the server is not configured with the required COOP/COEP headers. If you're using Azure, please check the deployment configuration." 
                 : "WebContainer failed to initialize. Some features like running the project may not work. Click the retry button next to the Run button to try again."}
             </span>
             <button className="toast-close" onClick={() => setShowWebContainerErrorToast(false)}>×</button>
@@ -1011,7 +1011,7 @@ const Project = () => {
           <div className="header-actions">
             <button onClick={() => setIsModalOpen(true)} className="icon-button" aria-label="Add collaborators">
               👥
-            </button>
+                    </button>
             <button
               onClick={() => setIsSidePanelOpen(!isSidePanelOpen)}
               className="icon-button"
@@ -1045,8 +1045,8 @@ const Project = () => {
               >
                 <span>↑</span>
               </button>
-            </div>
-          </div>
+                                </div>
+                            </div>
           <div className="file-list">
             {Object.keys(fileTree).map((file, index) => (
               <button
@@ -1066,7 +1066,7 @@ const Project = () => {
             ))}
           </div>
           <ResizeHandle direction="bottom" onResize={handleResize} />
-        </div>
+                    </div>
 
         {/* File Context Menu - updated with smaller icons and download option */}
         {contextMenu.show && (
@@ -1078,13 +1078,13 @@ const Project = () => {
             {/* Debug info - remove this in production */}
             <div className="context-menu-item context-menu-debug">
               {contextMenu.file ? `File: ${contextMenu.file}` : 'No file selected'}
-            </div>
+                    </div>
             <div className="context-menu-divider"></div>
             
             {/* Common options for all context menus */}
             <div className="context-menu-item" onClick={createNewFile}>
               <span className="context-menu-icon">+</span>New File
-            </div>
+                </div>
             <div className="context-menu-item" onClick={createNewFolder}>
               <span className="context-menu-icon">📁</span>New Folder
             </div>
@@ -1177,7 +1177,7 @@ const Project = () => {
                   setContextMenu(prev => ({ ...prev, show: false }));
                 }}>
                   <span className="context-menu-icon">✏️</span>Rename
-                </div>
+                    </div>
                 
                 <div className="context-menu-divider"></div>
                 
@@ -1292,7 +1292,7 @@ const Project = () => {
                         </div>
 
           <div className="run-container">
-            <button
+                            <button
               onClick={toggleTerminal}
               className="terminal-toggle-button"
               title={showTerminal ? "Hide Terminal" : "Show Terminal"}
@@ -1413,11 +1413,11 @@ const Project = () => {
                 <div className="empty-editor-content">
                   <div className="empty-editor-icon">📄</div>
                   <p className="empty-editor-text">Select a file to edit</p>
-                </div>
+                    </div>
               </div>
             )}
             {iframeUrl && webContainer && <ResizeHandle direction="right" onResize={handleResize} />}
-          </div>
+                </div>
 
           {iframeUrl && webContainer && (
             <div className="preview-pane resizable" style={previewWidth ? { width: `${previewWidth}px` } : {}}>
@@ -1425,11 +1425,11 @@ const Project = () => {
                 <span className="preview-icon">🌐</span>
                 <input
                   type="text"
-                  onChange={(e) => setIframeUrl(e.target.value)}
+                                onChange={(e) => setIframeUrl(e.target.value)}
                   value={iframeUrl}
                   className="url-input"
                 />
-              </div>
+                        </div>
               <iframe src={iframeUrl} className="preview-iframe" />
               <ResizeHandle direction="left" onResize={handleResize} />
             </div>
