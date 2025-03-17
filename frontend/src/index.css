@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,6 +15,11 @@ html,
 body {
   height: 100%;
   width: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .message-box {
@@ -1252,5 +1258,161 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Navbar Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Mobile menu animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add these to your existing styles */
+nav {
+    animation: fadeIn 0.3s ease-out;
+}
+
+nav .mobile-menu {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Navbar button hover effects */
+nav a:hover, nav button:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+/* Navbar item hover effect */
+nav a.rounded-lg:hover:not(.active), nav button.rounded-lg:hover {
+    background-color: rgba(31, 41, 55, 0.3);
+}
+
+/* Active link indicator */
+nav a.rounded-lg.active {
+  background-color: rgba(31, 41, 55, 0.5);
+  color: #10b981;
+  position: relative;
+}
+
+/* Remove the conflicting active link indicator styles */
+nav a.rounded-lg.active::after {
+  display: none;
+}
+
+/* Logo hover effect */
+nav .logo:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+/* Add background pattern */
+.bg-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='0.5' opacity='0.15'%3E%3Cpath d='M400,0 Q500,400 425,800' /%3E%3Cpath d='M420,0 Q520,390 445,800' /%3E%3Cpath d='M440,0 Q540,380 465,800' /%3E%3Cpath d='M460,0 Q560,370 485,800' /%3E%3Cpath d='M480,0 Q580,360 505,800' /%3E%3Cpath d='M500,0 Q600,350 525,800' /%3E%3Cpath d='M520,0 Q620,340 545,800' /%3E%3Cpath d='M540,0 Q640,330 565,800' /%3E%3Cpath d='M560,0 Q660,320 585,800' /%3E%3Cpath d='M580,0 Q680,310 605,800' /%3E%3Cpath d='M600,0 Q700,300 625,800' /%3E%3Cpath d='M620,0 Q720,290 645,800' /%3E%3Cpath d='M640,0 Q740,280 665,800' /%3E%3Cpath d='M660,0 Q760,270 685,800' /%3E%3Cpath d='M680,0 Q780,260 705,800' /%3E%3Cpath d='M700,0 Q800,250 725,800' /%3E%3Cpath d='M720,0 Q820,240 745,800' /%3E%3Cpath d='M740,0 Q840,230 765,800' /%3E%3Cpath d='M760,0 Q860,220 785,800' /%3E%3Cpath d='M780,0 Q880,210 805,800' /%3E%3C/g%3E%3C/svg%3E");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Adjust heading sizes for better readability */
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Add more space at the bottom of auth pages */
+.auth-container {
+  padding-bottom: 6rem;
+}
+
+/* Floating Navbar Styles */
+nav.rounded-xl {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+nav.rounded-xl.shadow-lg {
+  transform: translateY(5px);
+}
+
+/* Add a subtle glow effect to the navbar */
+.shadow-teal-900\/10 {
+  box-shadow: 0 4px 20px -2px rgba(13, 148, 136, 0.2);
+}
+
+/* Navbar background blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Mobile menu animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
 }
 
