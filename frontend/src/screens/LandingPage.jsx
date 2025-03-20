@@ -12,9 +12,6 @@ const LandingPage = () => {
       {/* Hero Section - Add mt-24 to account for fixed navbar */}
       <header className="pt-28 pb-10 px-5 md:px-10 max-w-5xl mx-auto text-center relative z-1 mt-24">
         <div className="mb-10 max-w-2xl mx-auto">
-          <div className="inline-block mb-4 px-3 py-1 bg-teal-400/10 rounded-full">
-            <span className="text-xs font-semibold text-teal-400 uppercase tracking-wider">Y Combinator Backed</span>
-          </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
             NeuroCode AI: The
             <br />
