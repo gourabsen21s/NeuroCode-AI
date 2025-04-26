@@ -5,6 +5,7 @@ import Login from '../screens/Login'
 import Register from '../screens/Register'
 import Project from '../screens/Project'
 import LandingPage from '../screens/LandingPage'
+import Documentation from '../screens/Documentation'
 import { UserContext } from '../context/user.context'
 
 const PrivateRoute = ({ children }) => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/documentation" element={<Documentation />} />
         <Route
           path="/dashboard"
           element={
