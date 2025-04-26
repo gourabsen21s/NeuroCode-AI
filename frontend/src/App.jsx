@@ -5,6 +5,7 @@ import Register from "./screens/Register"
 import Home from "./screens/Home"
 import Project from "./screens/Project"
 import LandingPage from "./screens/LandingPage"
+import Documentation from "./screens/Documentation"
 import { UserContext } from "./context/user.context"
 import axios from "./config/axios"
 import './index.css'
@@ -42,6 +43,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/documentation" element={<Documentation />} />
           <Route
             path="/dashboard"
             element={user ? <Home /> : <Navigate to="/login" />}
