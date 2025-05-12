@@ -56,7 +56,7 @@ const LandingPage = () => {
         <div className="mt-8 flex flex-wrap justify-center gap-6 text-xs text-gray-500">
           <div className="flex items-center">
             <span className="mr-2">✓</span>
-            <span>Code with Claude 3.5</span>
+            <span>Code with DeepSeek Chimera</span>
           </div>
           <div className="flex items-center">
             <span className="mr-2">✓</span>
@@ -64,7 +64,7 @@ const LandingPage = () => {
           </div>
           <div className="flex items-center">
             <span className="mr-2">✓</span>
-            <span>Search with Perplexity</span>
+            <span>Search with NeuroCode</span>
           </div>
           <div className="flex items-center">
             <span className="mr-2">✓</span>
@@ -78,20 +78,6 @@ const LandingPage = () => {
           <span className="text-xs text-gray-400">Now with Coding Agents!</span>
         </div>
       </header>
-
-      {/* Trusted By Section */}
-      <section className="py-10 px-5 md:px-10 bg-black border-t border-b border-gray-800 relative z-1">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-gray-500 mb-8 text-sm uppercase tracking-wider">Trusted by engineers at</p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-            {["Google", "Microsoft", "Amazon", "Meta", "Apple", "Netflix", "Spotify", "Airbnb"].map((company) => (
-              <div key={company} className="text-gray-400 font-medium">
-                {company}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
       <section id="features" className="py-20 px-5 md:px-10 bg-black relative z-1">
@@ -109,9 +95,9 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-teal-400/30 transition-all">
               <div className="text-4xl mb-4">💡</div>
-              <h3 className="text-xl font-semibold mb-3 text-teal-400">Code with Claude 3.5</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-400">Code with DeepSeek Chimera</h3>
               <p className="text-gray-400">
-                Claude 3.5 is the leading AI Coding Agent on the market. It has access to your development environment
+                DeepSeek Chimera is the leading AI Coding Agent on the market. It has access to your development environment
                 for a feedback loop to add features, fix bugs, and more.
               </p>
             </div>
@@ -120,16 +106,16 @@ const LandingPage = () => {
               <div className="text-4xl mb-4">🧠</div>
               <h3 className="text-xl font-semibold mb-3 text-teal-400">Chat & edit with AI</h3>
               <p className="text-gray-400">
-                NeuroCode Chat is built upon the foundation of advanced AI models, with changes and a unified user
+                NeuroCode Chat is built upon the foundation of DeepSeek Chimera, with changes and a unified user
                 experience to make coding more intuitive.
               </p>
             </div>
 
             <div className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-teal-400/30 transition-all">
               <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold mb-3 text-teal-400">Search with Perplexity</h3>
+              <h3 className="text-xl font-semibold mb-3 text-teal-400">Search with NeuroCode</h3>
               <p className="text-gray-400">
-                Perplexity is the leading AI search engine. Integrated within NeuroCode Search, you can seamlessly add
+                NeuroCode Search is powered by DeepSeek Chimera. You can seamlessly add
                 web content directly into your requests.
               </p>
             </div>
@@ -151,8 +137,7 @@ const LandingPage = () => {
               With A Single Subscription
             </h3>
             <p className="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
-              The best AI model for coding changes by the week. NeuroCode Router automatically connects you to the
-              highest-performing AI models for coding across all tools.
+              NeuroCode AI brings you the power of DeepSeek Chimera, integrating this powerful model across all tools in our editor.
             </p>
 
             <div className="flex flex-col md:flex-row justify-center gap-6 max-w-3xl mx-auto">
@@ -161,29 +146,9 @@ const LandingPage = () => {
                   <div className="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-black font-bold mr-3">
                     1
                   </div>
-                  <h4 className="font-semibold text-teal-400">NeuroCode Model</h4>
+                  <h4 className="font-semibold text-teal-400">DeepSeek Chimera</h4>
                 </div>
-                <p className="text-gray-400 text-sm">Our curated model selection for the best performance</p>
-              </div>
-
-              <div className="bg-gray-900 p-6 rounded-lg border border-gray-800 flex-1">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold mr-3">
-                    2
-                  </div>
-                  <h4 className="font-semibold">Claude 3.5 Sonnet</h4>
-                </div>
-                <p className="text-gray-400 text-sm">Anthropic's powerful model for coding tasks</p>
-              </div>
-
-              <div className="bg-gray-900 p-6 rounded-lg border border-gray-800 flex-1">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold mr-3">
-                    3
-                  </div>
-                  <h4 className="font-semibold">GPT-4o</h4>
-                </div>
-                <p className="text-gray-400 text-sm">OpenAI's latest model for complex coding</p>
+                <p className="text-gray-400 text-sm">Powerful AI model optimized for coding</p>
               </div>
             </div>
           </div>
@@ -233,7 +198,7 @@ const LandingPage = () => {
 
             <div className="bg-gray-900 p-8 rounded-lg border border-gray-800">
               <p className="text-gray-300 mb-6">
-                "NeuroCode AI is at least a 2x improvement over Copilot. It's amazing having an AI pair programmer, and
+                "NeuroCode AI is at least a 2x improvement over Copilot. It's amazing having DeepSeek Chimera as an AI pair programmer, and
                 is an incredible accelerator for me and my team."
               </p>
               <div className="flex items-center">
